@@ -1,6 +1,6 @@
 <?php
 
-namespace classes;
+namespace Base;
 
 /**
 * Interface inherited by the Request class

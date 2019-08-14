@@ -1,11 +1,11 @@
 <?php
 
-namespace classes;
+namespace Base;
 
 /**
  * 
  */
-use classes\IRequest;
+use Base\IRequest;
 
 class Routes
 {
@@ -139,7 +139,8 @@ class Routes
   		return DEV? raiseError("you assigned a non existent controller $classPath to handle your route") : $this->internalServerError();
   	}
   	$class = CONTROLLER_NS.$classPath;
-  	$controller = new $class();
+    $reflector = new \ReflectionClass($class);
+  	$controller = $reflector->isInstantiable()? new $class() : $class;
   	if(!method_exists($controller, $classMethod))
   	{
   		return DEV ? raiseError("The method $classMethod does not exist in class $class") : $this->internalServerError();

@@ -1,6 +1,6 @@
 <?php
 
-namespace  classes;
+namespace  Base;
 
 class Request implements IRequest
 {
@@ -28,7 +28,7 @@ class Request implements IRequest
 	*@param string $key
 	*@return string
 	*/
-	public function toCamelCase($key) : string
+	private  function toCamelCase($key) : string
 	{
 		$result = strtolower($key);
 		preg_match_all('/_[a-z]/', $result, $matches);
@@ -45,7 +45,7 @@ class Request implements IRequest
 	*returns a value matching the supplied key in the internal get array getArr or returns null if not found.
 	*it also calls the setGet method if the getArr has not been set.
 	*@param string $key
-	*@return string|null
+	*@return string
 	*/
 	public function get($key)
 	{
@@ -53,14 +53,14 @@ class Request implements IRequest
 		if(!isset($this->getArr)){
 			$this->setGet();
 		}
-		return isset($this->getArr[$key]) ? $this->getArr[$key] : null;
+		return isset($this->getArr[$key]) ? $this->getArr[$key] : '';
 	}
 
 	/**
 	* returns a value matching the supplied key in the internal post array postArr or returns null if not found.
 	* it also calls the setPost method if the postArr has not been set.
 	* @param string $key
-	* @return string|null
+	* @return string
 	*/
 	public function input($key)
 	{
@@ -68,7 +68,7 @@ class Request implements IRequest
 		if(!isset($this->postArr)){
 			$this->setPost();
 		}
-		return isset($this->postArr[$key]) ? $this->postArr[$key] : null;
+		return isset($this->postArr[$key]) ? $this->postArr[$key] : '';
 	}
 
 	/**
@@ -105,7 +105,7 @@ class Request implements IRequest
 		}
 		if(!array_key_exists(strtolower($name), $this->postArr))
 		{
-			return null;
+			return '';
 		}
 		return $this->input($name);
 	}

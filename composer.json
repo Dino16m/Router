@@ -1,0 +1,9 @@
+{
+    "autoload": {
+        "psr-4": {
+        "Base\\": "vendor/Base",
+        "Controllers\\": "controllers"
+    	},
+    	"classmap":["vendor/Base/"]
+    }
+}

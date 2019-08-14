@@ -23,7 +23,6 @@ function handleErrors($errno, $errstr, $errfile, $errline)
 			die('an error occured');
 			break;
 	}
-	die();
 
 }
 
